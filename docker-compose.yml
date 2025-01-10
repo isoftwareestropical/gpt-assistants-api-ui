@@ -1,9 +1,20 @@
-version: "3.8"
-services:
-  app:
-    build:
-      context: ./
-      dockerfile: ./Dockerfile
-    env_file: .env
-    ports:
-      - "8501:8501"
+# Base image with Python
+FROM python:3.11-slim
+
+# Set working directory inside the container
+WORKDIR /app
+
+# Copy project files to the container
+COPY . .
+
+# Install Poetry
+RUN pip install poetry
+
+# Install dependencies without installing the current project as a package
+RUN poetry install --no-root
+
+# Expose the Streamlit port
+EXPOSE 8501
+
+# Run the Streamlit app
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
