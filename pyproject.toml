@@ -6,9 +6,6 @@ authors = ["ryo-ma <saka_ro@yahoo.co.jp>"]
 license = "MIT"
 readme = "README.md"
 
-[tool.poetry.packages]
-include = ["gpt_assistants_api_ui"]
-
 [tool.poetry.dependencies]
 python = "^3.10 || ^3.11"
 streamlit = "^1.28.2"
